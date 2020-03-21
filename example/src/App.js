@@ -12,14 +12,17 @@ export default class App extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({iiifUrl: 'http://free.iiifhosting.com/iiif/7435567faf245996fcd1051856fecb4f8e9326c3eb44c907d5509638384cae30/info.json'})
+      this.setState({iiifUrl: 'http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json'})
     }, 5000)
   }
 
   render () {
     return (
-      <div>
-        <IIIFViewer iiifUrl={this.state.iiifUrl} />
+      <div className='demo'>
+        <h1>react-iiif-viewer Demo</h1>
+        <div className='viewer-wrapper'>
+          <IIIFViewer iiifUrl={this.state.iiifUrl} />
+        </div>
       </div>
     )
   }

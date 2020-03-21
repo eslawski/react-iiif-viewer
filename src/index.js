@@ -1,22 +1,30 @@
-import React, { Component } from 'react'
+import React, {useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
+import OpenSeadragon from 'openseadragon/build/openseadragon/openseadragon'
 
-import styles from './styles.css'
+const viewerId = 'react-iiif-viewer'
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+const IIIFViewer = ({iiifUrl}) => {
+  let openSeadragonViewer = useRef(null)
 
-  render() {
-    const {
-      text
-    } = this.props
+  useEffect(() => {
+    if (openSeadragonViewer.current) {
+      openSeadragonViewer.current.open([iiifUrl])
+    } else {
+      openSeadragonViewer.current = new OpenSeadragon({
+        id: viewerId,
+        tileSources: [iiifUrl]
+      })
+    }
+  })
 
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
+  return (
+    <div id={viewerId} style={{width: 500, height: 500}} />
+  )
 }
+
+IIIFViewer.propTypes = {
+  iiifUrl: PropTypes.string.isRequired
+}
+
+export default IIIFViewer

@@ -12,6 +12,8 @@ const ViewerWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  width: ${props => props.viewerWidth};
+  height: ${props => props.viewerHeight};
 `
 
 const OpenSeadragonViewer = styled.div`
@@ -44,7 +46,7 @@ class Viewer extends React.Component {
 
   render() {
     return (
-      <ViewerWrapper className='react-iiif-viewer'>
+      <ViewerWrapper className='react-iiif-viewer' viewerWidth={this.props.width} viewerHeight={this.props.height}>
         <OpenSeadragonViewer id={viewerId} />
         <ZoomControls zoomInId={zoomInId} zoomOutId={zoomOutId} />
       </ViewerWrapper>

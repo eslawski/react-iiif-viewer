@@ -14,10 +14,7 @@ export default class App extends Component {
     return (
       <div className='demo'>
         <h1>react-iiif-viewer Demo</h1>
-        <div className='viewer-wrapper'>
-          <Viewer iiifUrl={this.state.iiifUrl} />
-        </div>
-
+        <Viewer iiifUrl={this.state.iiifUrl} />
         <button onClick={() => this.setState({iiifUrl: 'http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json'})
         }>change image</button>
       </div>

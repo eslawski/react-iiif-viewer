@@ -9,8 +9,3 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
-.viewer-wrapper {
-  width: 800px;
-  height: 500px;
-}

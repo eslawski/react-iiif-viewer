@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import IIIFViewer from 'react-iiif-viewer'
+import { Viewer } from 'react-iiif-viewer'
 
 export default class App extends Component {
   constructor(props) {
@@ -10,19 +10,16 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({iiifUrl: 'http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json'})
-    }, 5000)
-  }
-
   render () {
     return (
       <div className='demo'>
         <h1>react-iiif-viewer Demo</h1>
         <div className='viewer-wrapper'>
-          <IIIFViewer iiifUrl={this.state.iiifUrl} />
+          <Viewer iiifUrl={this.state.iiifUrl} />
         </div>
+
+        <button onClick={() => this.setState({iiifUrl: 'http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json'})
+        }>change image</button>
       </div>
     )
   }

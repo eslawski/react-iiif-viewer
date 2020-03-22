@@ -10,6 +10,9 @@ import pkg from './package.json'
 
 export default {
   input: 'src/index.js',
+  external: [
+    'styled-components'
+  ],
   output: [
     {
       file: pkg.main,

@@ -1,13 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OpenSeadragon from 'openseadragon/build/openseadragon/openseadragon'
-import styles from '../styles/Viewer.css'
-import plus from '../images/plus.svg'
-import minus from '../images/minus.svg'
+import styled from 'styled-components'
+import ZoomControls from './ZoomControls'
 
 const viewerId = 'openseadragon-viewer'
-const zoomInId = 'zoom-in-blah'
-const zoomOutId = 'zoom-out-blah'
+const zoomInId = 'zoom-in'
+const zoomOutId = 'zoom-out'
+
+const ViewerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`
+
+const OpenSeadragonViewer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #202020;
+`
 
 class Viewer extends React.Component {
   constructor(props) {
@@ -33,23 +44,22 @@ class Viewer extends React.Component {
 
   render() {
     return (
-      <div className='react-iiif-viewer' style={{width: '100%', height: '100%', position: 'relative'}}>
-        <div id={viewerId} className={styles.openSeadragonViewer} />
-        <div className={styles.zoomControls}>
-          <button id={zoomInId} className={styles.zoomIn}>
-            <img src={plus} className={styles.zoomInIcon} alt='zoom in' />
-          </button>
-          <button id={zoomOutId} className={styles.zoomOut}>
-            <img src={minus} className={styles.zoomOutIcon} alt='zoom out' />
-          </button>
-        </div>
-      </div>
+      <ViewerWrapper className='react-iiif-viewer'>
+        <OpenSeadragonViewer id={viewerId} />
+        <ZoomControls zoomInId={zoomInId} zoomOutId={zoomOutId} />
+      </ViewerWrapper>
     )
   }
 }
 
 Viewer.propTypes = {
-  iiifUrl: PropTypes.string.isRequired
+  iiifUrl: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string
 }
 
+Viewer.defaultProps = {
+  width: '800px',
+  height: '500px'
+}
 export default Viewer

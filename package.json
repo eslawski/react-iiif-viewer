@@ -59,6 +59,7 @@
     "dist"
   ],
   "dependencies": {
-    "openseadragon": "^2.4.2"
+    "openseadragon": "^2.4.2",
+    "styled-components": "^5.0.1"
   }
 }

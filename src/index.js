@@ -1,1 +1,1 @@
-export Viewer from './Viewer'
+export Viewer from './components/Viewer'

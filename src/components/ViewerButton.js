@@ -8,7 +8,9 @@ const Button = styled.button`
   width: 35px;
   background-color: #D0D0D0;
   cursor: pointer;
-  border: none
+  border: none;
+  border-radius: 4px;
+  outline: none;
 `
 
 const Img = styled.img`
@@ -16,17 +18,18 @@ const Img = styled.img`
   width: 80%;
 `
 
-const ViewerButton = ({id, iconSrc}) => {
+const ViewerButton = ({id, iconSrc, onClick}) => {
   return (
-    <Button id={id}>
+    <Button id={id} onClick={onClick}>
       <Img src={iconSrc} />
     </Button>
   )
 }
 
 ViewerButton.propTypes = {
-  id: PropTypes.string.isRequired,
-  iconSrc: PropTypes.string.isRequired
+  id: PropTypes.string,
+  iconSrc: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 }
 
 export default ViewerButton

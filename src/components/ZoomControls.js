@@ -21,18 +21,18 @@ const ZoomControlsWrapper = styled.div`
   }
 `
 
-const ZoomControls = ({zoomInId, zoomOutId}) => {
+const ZoomControls = ({zoomInButtonId, zoomOutButtonId}) => {
   return (
     <ZoomControlsWrapper>
-      <ViewerButton id={zoomInId} iconSrc={plus} />
-      <ViewerButton id={zoomOutId} iconSrc={minus} />
+      <ViewerButton id={zoomInButtonId} iconSrc={plus} />
+      <ViewerButton id={zoomOutButtonId} iconSrc={minus} />
     </ZoomControlsWrapper>
   )
 }
 
 ZoomControls.propTypes = {
-  zoomInId: PropTypes.string.isRequired,
-  zoomOutId: PropTypes.string.isRequired
+  zoomInButtonId: PropTypes.string.isRequired,
+  zoomOutButtonId: PropTypes.string.isRequired
 }
 
 export default ZoomControls

@@ -1,5 +1,5 @@
 module.exports = {
   moduleNameMapper: {
-    '\\.svg$': '../__mocks__/mockSVG.js'
+    '\\.svg$': '../../__mocks__/mockSVG.js'
   }
 }

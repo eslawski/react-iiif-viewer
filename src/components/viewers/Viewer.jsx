@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import OpenSeadragon from 'openseadragon/build/openseadragon/openseadragon'
+import OpenSeadragon from 'openseadragon'
 import styled from "@emotion/styled";
 import ZoomControls from '../ZoomControls'
 import FullScreenControls from '../FullScreenControls'
@@ -39,11 +39,12 @@ class Viewer extends React.Component {
       id: VIEWER_ID,
       tileSources: [this.props.iiifUrl],
       zoomInButton: ZOOM_IN_BUTTON_ID,
-      zoomOutButton: ZOOM_OUT_BUTTON_ID
+      zoomOutButton: ZOOM_OUT_BUTTON_ID,
+      loadTilesWithAjax: true
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.iiifUrl !== prevProps.iiifUrl) {
       this.openSeadragonViewer.open([this.props.iiifUrl])
     }
@@ -85,10 +86,10 @@ class Viewer extends React.Component {
     return (
       <ViewerWrapper
         className='react-iiif-viewer'
+        data-testid='react-iiif-viewer'
         ref={this.reactIIIFViewerRef}
         viewerWidth={this.props.width}
         viewerHeight={this.props.height}
-        data-testid
       >
         <OpenSeadragonViewer id={VIEWER_ID} />
 

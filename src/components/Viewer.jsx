@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OpenSeadragon from 'openseadragon/build/openseadragon/openseadragon'
-import styled from 'styled-components'
-import ZoomControls from './ZoomControls'
-import FullScreenControls from './FullScreenControls'
+import styled from "@emotion/styled";
+import ZoomControls from '../child-components/ZoomControls'
+import FullScreenControls from '../child-components/FullScreenControls'
 
 const VIEWER_ID = 'openseadragon-viewer'
 const ZOOM_IN_BUTTON_ID = 'zoom-in'

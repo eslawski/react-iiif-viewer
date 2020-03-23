@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import plus from '../images/plus.svg'
-import minus from '../images/minus.svg'
-import styled from 'styled-components'
+import styled from "@emotion/styled";
 import ViewerButton from './ViewerButton'
 
 const ZoomControlsWrapper = styled.div`
@@ -24,8 +22,8 @@ const ZoomControlsWrapper = styled.div`
 const ZoomControls = ({zoomInButtonId, zoomOutButtonId}) => {
   return (
     <ZoomControlsWrapper>
-      <ViewerButton id={zoomInButtonId} iconSrc={plus} altText='zoom in' />
-      <ViewerButton id={zoomOutButtonId} iconSrc={minus} altText='zoom out' />
+      <ViewerButton id={zoomInButtonId} altText='zoom in' />
+      <ViewerButton id={zoomOutButtonId} altText='zoom out' />
     </ZoomControlsWrapper>
   )
 }

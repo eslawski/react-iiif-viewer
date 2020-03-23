@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import expand from '../images/expand.svg'
-import minimize from '../images/minimize.svg'
-import styled from 'styled-components'
+import styled from "@emotion/styled";
 import ViewerButton from './ViewerButton'
 
 const FullScreenControlsWrapper = styled.div`
@@ -15,8 +13,8 @@ const FullScreenControlsWrapper = styled.div`
 const FullScreenControls = ({isFullScreen, enterFullScreen, exitFullScreen}) => {
   return (
     <FullScreenControlsWrapper>
-      {!isFullScreen && <ViewerButton iconSrc={expand} onClick={enterFullScreen} altText='enter fullscreen'/> }
-      {isFullScreen && <ViewerButton iconSrc={minimize} onClick={exitFullScreen} altText='exit fullscreen' /> }
+      {!isFullScreen && <ViewerButton onClick={enterFullScreen} altText='enter fullscreen'/> }
+      {isFullScreen && <ViewerButton onClick={exitFullScreen} altText='exit fullscreen' /> }
     </FullScreenControlsWrapper>
   )
 }

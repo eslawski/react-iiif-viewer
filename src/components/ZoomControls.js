@@ -24,8 +24,8 @@ const ZoomControlsWrapper = styled.div`
 const ZoomControls = ({zoomInButtonId, zoomOutButtonId}) => {
   return (
     <ZoomControlsWrapper>
-      <ViewerButton id={zoomInButtonId} iconSrc={plus} />
-      <ViewerButton id={zoomOutButtonId} iconSrc={minus} />
+      <ViewerButton id={zoomInButtonId} iconSrc={plus} altText='zoom in' />
+      <ViewerButton id={zoomOutButtonId} iconSrc={minus} altText='zoom out' />
     </ZoomControlsWrapper>
   )
 }

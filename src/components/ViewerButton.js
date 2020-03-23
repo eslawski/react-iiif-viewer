@@ -18,10 +18,10 @@ const Img = styled.img`
   width: 80%;
 `
 
-const ViewerButton = ({id, iconSrc, onClick}) => {
+const ViewerButton = ({id, iconSrc, onClick, altText}) => {
   return (
     <Button id={id} onClick={onClick}>
-      <Img src={iconSrc} />
+      <Img src={iconSrc} alt={altText} />
     </Button>
   )
 }
@@ -29,7 +29,8 @@ const ViewerButton = ({id, iconSrc, onClick}) => {
 ViewerButton.propTypes = {
   id: PropTypes.string,
   iconSrc: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  altText: PropTypes.string
 }
 
 export default ViewerButton

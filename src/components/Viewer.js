@@ -88,6 +88,7 @@ class Viewer extends React.Component {
         ref={this.reactIIIFViewerRef}
         viewerWidth={this.props.width}
         viewerHeight={this.props.height}
+        data-testid
       >
         <OpenSeadragonViewer id={VIEWER_ID} />
 

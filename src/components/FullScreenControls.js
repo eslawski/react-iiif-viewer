@@ -15,8 +15,8 @@ const FullScreenControlsWrapper = styled.div`
 const FullScreenControls = ({isFullScreen, enterFullScreen, exitFullScreen}) => {
   return (
     <FullScreenControlsWrapper>
-      {!isFullScreen && <ViewerButton iconSrc={expand} onClick={enterFullScreen} /> }
-      {isFullScreen && <ViewerButton iconSrc={minimize} onClick={exitFullScreen} /> }
+      {!isFullScreen && <ViewerButton iconSrc={expand} onClick={enterFullScreen} altText='enter fullscreen'/> }
+      {isFullScreen && <ViewerButton iconSrc={minimize} onClick={exitFullScreen} altText='exit fullscreen' /> }
     </FullScreenControlsWrapper>
   )
 }
@@ -24,8 +24,7 @@ const FullScreenControls = ({isFullScreen, enterFullScreen, exitFullScreen}) => 
 FullScreenControls.propTypes = {
   isFullScreen: PropTypes.bool.isRequired,
   enterFullScreen: PropTypes.func.isRequired,
-  exitFullScreen: PropTypes.func.isRequired,
-
+  exitFullScreen: PropTypes.func.isRequired
 }
 
 export default FullScreenControls

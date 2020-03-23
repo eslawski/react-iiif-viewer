@@ -2,9 +2,10 @@
   "name": "react-sample-components-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "styleguidist server",
+    "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,12 +23,21 @@
     "@babel/preset-react": "^7.9.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@types/prop-types": "^15.7.3",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
+    "file-loader": "^6.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-styleguidist": "^11.0.4",
+    "rollup": "^2.1.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-svg": "^2.0.0",
     "webpack": "^4.42.0"
   },
   "dependencies": {

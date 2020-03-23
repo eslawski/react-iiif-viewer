@@ -18,10 +18,10 @@ const Img = styled.img`
   width: 80%;
 `
 
-const ViewerButton = ({id, onClick, altText}) => {
+const ViewerButton = ({id, onClick, iconSrc, altText}) => {
   return (
     <Button id={id} onClick={onClick}>
-      placeholder
+      <Img src={iconSrc} alt={altText} />
     </Button>
   )
 }

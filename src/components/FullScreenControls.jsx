@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import expand from './images/expand.svg'
-import minimize from './images/minimize.svg'
+import expand from '../images/expand.svg'
+import minimize from '../images/minimize.svg'
 import styled from "@emotion/styled";
 import ViewerButton from './ViewerButton'
 

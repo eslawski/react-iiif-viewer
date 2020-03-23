@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "@emotion/styled";
 import ViewerButton from './ViewerButton'
-import plus from './images/plus.svg'
-import minus from './images/minus.svg'
+import plus from '../images/plus.svg'
+import minus from '../images/minus.svg'
 
 const ZoomControlsWrapper = styled.div`
   position: absolute;

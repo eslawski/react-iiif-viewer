@@ -1,1 +1,1 @@
-export {default as Viewer} from "./components/Viewer"
+export {default as Viewer} from "./components/viewers/Viewer"

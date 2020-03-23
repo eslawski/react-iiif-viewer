@@ -1,4 +1,5 @@
 module.exports = {
+  components: 'src/components/viewers/*.{js,jsx,ts,tsx}',
   webpackConfig: {
     module: {
       rules: [

@@ -11,12 +11,12 @@ const ZoomControlsWrapper = styled.div`
   top: 0;
   right: 0;
 
-  & button:first-child  {
+  & button:first-of-type  {
     border-radius: 4px 4px 0 0;
     border-bottom: 1px solid #A9A9A9 !important;
   }
 
-  & button:last-child {
+  & button:last-of-type {
     border-radius: 0 0 4px 4px;
   }
 `

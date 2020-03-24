@@ -5,7 +5,7 @@ import ViewerButton from './ViewerButton'
 import plus from '../images/plus.svg'
 import minus from '../images/minus.svg'
 
-const ZoomControlsWrapper = styled.div`
+const Container = styled.div`
   position: absolute;
   padding: 10px 10px 0 0;
   top: 0;
@@ -21,18 +21,18 @@ const ZoomControlsWrapper = styled.div`
   }
 `
 
-const ZoomControls = ({zoomInButtonId, zoomOutButtonId}) => {
+const ZoomControls = ({zoomInHandler, zoomOutHandler}) => {
   return (
-    <ZoomControlsWrapper>
-      <ViewerButton id={zoomInButtonId} iconSrc={plus} altText='zoom in' />
-      <ViewerButton id={zoomOutButtonId} iconSrc={minus} altText='zoom out' />
-    </ZoomControlsWrapper>
+    <Container>
+      <ViewerButton onClickHandler={zoomInHandler} iconSrc={plus} altText='zoom in' />
+      <ViewerButton onClickHandler={zoomOutHandler} iconSrc={minus} altText='zoom out' />
+    </Container>
   )
 }
 
 ZoomControls.propTypes = {
-  zoomInButtonId: PropTypes.string.isRequired,
-  zoomOutButtonId: PropTypes.string.isRequired
+  zoomInHandler: PropTypes.func.isRequired,
+  zoomOutHandler: PropTypes.func.isRequired
 }
 
 export default ZoomControls

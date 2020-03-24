@@ -1,26 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import OpenSeadragon from 'openseadragon'
 import styled from "@emotion/styled";
 import ZoomControls from '../ZoomControls'
 import FullScreenControls from '../FullScreenControls'
+import OpenSeadragonViewer from '../OpenSeadragonViewer'
+import FullScreenAPI from '../../helpers/fullscreenApi'
 
-const VIEWER_ID = 'openseadragon-viewer'
-const ZOOM_IN_BUTTON_ID = 'zoom-in'
-const ZOOM_OUT_BUTTON_ID = 'zoom-out'
-
-const ViewerWrapper = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
   width: ${props => props.viewerWidth};
   height: ${props => props.viewerHeight};
-`
-
-const OpenSeadragonViewer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #202020;
 `
 
 class Viewer extends React.Component {
@@ -31,71 +22,44 @@ class Viewer extends React.Component {
     }
 
     this.reactIIIFViewerRef = React.createRef()
-    this.openSeadragonViewer = null
-  }
-
-  componentDidMount() {
-    this.openSeadragonViewer = new OpenSeadragon({
-      id: VIEWER_ID,
-      tileSources: [this.props.iiifUrl],
-      zoomInButton: ZOOM_IN_BUTTON_ID,
-      zoomOutButton: ZOOM_OUT_BUTTON_ID,
-      loadTilesWithAjax: true
-    })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.iiifUrl !== prevProps.iiifUrl) {
-      this.openSeadragonViewer.open([this.props.iiifUrl])
-    }
+    this.openSeadragonRef = React.createRef()
   }
 
   enterFullScreen() {
-    const element = this.reactIIIFViewerRef.current
-
-    if (element.requestFullScreen) {
-      element.requestFullScreen()
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen()
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen()
-    }
-
-    this.setState({
-      isFullScreen: true
-    })
+    FullScreenAPI.enter(this.reactIIIFViewerRef.current)
+    this.setState({isFullScreen: true})
   }
 
   exitFullScreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen()
-    }
+    FullScreenAPI.exit()
+    this.setState({isFullScreen: false})
+  }
 
-    this.setState({
-      isFullScreen: false
-    })
+  zoomIn() {
+    this.openSeadragonRef.current.zoomIn();
+  }
+
+  zoomOut() {
+    this.openSeadragonRef.current.zoomOut();
   }
 
   render() {
     return (
-      <ViewerWrapper
+      <Container
         className='react-iiif-viewer'
         data-testid='react-iiif-viewer'
         ref={this.reactIIIFViewerRef}
         viewerWidth={this.props.width}
         viewerHeight={this.props.height}
       >
-        <OpenSeadragonViewer id={VIEWER_ID} />
+        <OpenSeadragonViewer
+          iiifUrl={this.props.iiifUrl}
+          ref={this.openSeadragonRef}
+        />
 
         <ZoomControls
-          zoomInButtonId={ZOOM_IN_BUTTON_ID}
-          zoomOutButtonId={ZOOM_OUT_BUTTON_ID}
+          zoomInHandler={() => this.zoomIn()}
+          zoomOutHandler={() => this.zoomOut()}
         />
 
         <FullScreenControls
@@ -103,7 +67,7 @@ class Viewer extends React.Component {
           enterFullScreen={() => this.enterFullScreen()}
           exitFullScreen={() => this.exitFullScreen()}
         />
-      </ViewerWrapper>
+      </Container>
     )
   }
 }

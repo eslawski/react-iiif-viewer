@@ -1,7 +1,17 @@
-class OpenSeadragonMock {
-  constructor() {}
+export const mockZoomBy = jest.fn();
+export const mockApplyConstraints = jest.fn();
+export const mockOpen = jest.fn();
 
-  open() {}
+class OpenSeadragonMock {
+  constructor() {
+    this.viewport = {
+      zoomBy: mockZoomBy,
+      applyConstraints: mockApplyConstraints
+    }
+    this.open = mockOpen
+  }
+
+
 }
 
 export default OpenSeadragonMock

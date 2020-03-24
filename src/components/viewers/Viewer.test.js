@@ -1,38 +1,70 @@
-import '@testing-library/jest-dom'
-
-import { render, screen, fireEvent } from "@testing-library/react";
-import React from "react";
+import { render, fireEvent } from "@testing-library/react"
+import React from "react"
 import Viewer from './Viewer'
+import { mockZoomBy, mockApplyConstraints, mockOpen } from '../../../__mocks__/openseadragon'
+
+function renderViewer(){
+  return render(<Viewer
+    iiifUrl={'test url'}
+  />)
+}
 
 describe('<Viewer />', () => {
   beforeEach(() => {
-    render(<Viewer iiifUrl={'test url'} />)
-  })
+    mockZoomBy.mockClear();
+    mockApplyConstraints.mockClear();
+    mockOpen.mockClear();
+  });
 
   it('renders not in full screen', () => {
-    expect(screen.getByAltText('enter fullscreen')).toBeInTheDocument()
+    const { getByAltText } = renderViewer()
+    expect(getByAltText('enter fullscreen')).toBeTruthy()
+    expect(document.fullscreenElement).toBeFalsy()
   })
 
-  it('should enter full screen', () => {
-    const viewer = screen.getByTestId('react-iiif-viewer')
-    viewer.requestFullScreen = jest.fn()
+  it('should request to enter full screen when the enter fullscreen button is clicked', () => {
+    const { getByAltText, getByTestId } = renderViewer()
 
-    const zoomInButton = screen.getByAltText('enter fullscreen')
-    fireEvent.click(zoomInButton);
+    const viewerElement = getByTestId('react-iiif-viewer')
+    viewerElement.requestFullScreen = jest.fn()
 
-    expect(viewer.requestFullScreen).toBeCalled()
+    const enterFullScreenButton = getByAltText('enter fullscreen')
+    fireEvent.click(enterFullScreenButton);
+
+    expect(viewerElement.requestFullScreen).toBeCalled()
   })
 
-  it('should exit full screen', () => {
+  it('should exit full screen when the exit fullscreen button is clicked', () => {
     document.exitFullscreen = jest.fn()
+    const { getByAltText } = renderViewer()
 
-    const zoomInButton = screen.getByAltText('enter fullscreen')
-    fireEvent.click(zoomInButton);
+    const enterFullScreenButton = getByAltText('enter fullscreen')
+    fireEvent.click(enterFullScreenButton);
 
-    const zoomOutButton = screen.getByAltText('exit fullscreen')
-    fireEvent.click(zoomOutButton);
+    const exitFullScreenButton = getByAltText('exit fullscreen')
+    fireEvent.click(exitFullScreenButton);
 
     expect(document.exitFullscreen).toBeCalled()
+  })
+
+  it('should zoom in when the zoom in button is clicked', () => {
+    const { getByAltText } = renderViewer()
+
+    const zoomInButton = getByAltText('zoom in')
+    fireEvent.click(zoomInButton);
+
+    expect(mockZoomBy).toBeCalled()
+    expect(mockApplyConstraints).toBeCalled()
+  })
+
+  it('should zoom out when the zoom out button is clicked', () => {
+    const { getByAltText } = renderViewer()
+
+    const zoomOutButton = getByAltText('zoom out')
+    fireEvent.click(zoomOutButton);
+
+    expect(mockZoomBy).toBeCalled()
+    expect(mockApplyConstraints).toBeCalled()
   })
 
 })

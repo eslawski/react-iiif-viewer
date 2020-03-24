@@ -64,8 +64,8 @@ class Viewer extends React.Component {
 
         <FullScreenControls
           isFullScreen={this.state.isFullScreen}
-          enterFullScreen={() => this.enterFullScreen()}
-          exitFullScreen={() => this.exitFullScreen()}
+          enterFullScreenHandler={() => this.enterFullScreen()}
+          exitFullScreenHandler={() => this.exitFullScreen()}
         />
       </Container>
     )

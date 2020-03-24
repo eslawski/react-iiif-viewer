@@ -1,30 +1,59 @@
-import '@testing-library/jest-dom'
-
-import { render, screen } from "@testing-library/react";
+import {fireEvent, render} from '@testing-library/react'
 import React from "react";
 import FullScreenControls from './FullScreenControls'
 
+let enterFullScreenHandler = jest.fn(),
+  exitFullScreenHandler = jest.fn();
+
+function renderFullScreenControls(isFullScreen){
+  return render(<FullScreenControls
+    enterFullScreenHandler={enterFullScreenHandler}
+    exitFullScreenHandler={exitFullScreenHandler}
+    isFullScreen={isFullScreen}
+  />)
+}
+
 describe('<FullScreenControls />', () => {
-  let fullScreenHandler = jest.fn(),
-    exitFullScreenHandler = jest.fn();
+  it('renders the enterfull screen button when not in fullscreen mode', () => {
+    const { getByAltText } = renderFullScreenControls(false)
 
-  it('shows the full screen button when not in full screen', () => {
-    render(<FullScreenControls
-      enterFullScreen={fullScreenHandler}
-      exitFullScreen={exitFullScreenHandler}
-      isFullScreen={false}
-    />)
-
-    expect(screen.getByAltText('enter fullscreen')).toBeInTheDocument()
+    expect(getByAltText('enter fullscreen')).toBeTruthy()
   })
 
-  it('shows the full screen button when not in full screen', () => {
-    render(<FullScreenControls
-      enterFullScreen={fullScreenHandler}
-      exitFullScreen={exitFullScreenHandler}
-      isFullScreen={true}
-    />)
+  it('hides the exit fullscreen button when not in fullscreen mode', () => {
+    const { queryByAltText } = renderFullScreenControls(false)
 
-    expect(screen.getByAltText('exit fullscreen')).toBeInTheDocument()
+    expect(queryByAltText('exit fullscreen')).toBeFalsy()
+  })
+
+  it('renders the exit fullscreen button when in fullscreen mode', () => {
+    const { getByAltText } = renderFullScreenControls(true)
+
+    expect(getByAltText('exit fullscreen')).toBeTruthy()
+  })
+
+  it('hides the enter fullscreen button when in fullscreen mode', () => {
+    const { queryByAltText } = renderFullScreenControls(true)
+
+    expect(queryByAltText('enter fullscreen')).toBeFalsy()
+  })
+
+
+  it('calls the enter fullscreen handler', () => {
+    const { getByAltText } = renderFullScreenControls(false)
+
+    const enterFullScreen = getByAltText("enter fullscreen")
+
+    fireEvent.click(enterFullScreen)
+    expect(enterFullScreenHandler).toBeCalled()
+  })
+
+  it('calls the exit fullscreen handler', () => {
+    const { getByAltText } = renderFullScreenControls(true)
+
+    const exitFullScreen = getByAltText("exit fullscreen")
+
+    fireEvent.click(exitFullScreen)
+    expect(exitFullScreenHandler).toBeCalled()
   })
 })

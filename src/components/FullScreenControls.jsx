@@ -12,19 +12,19 @@ const Containter = styled.div`
   left: 0;
 `
 
-const FullScreenControls = ({isFullScreen, enterFullScreen, exitFullScreen}) => {
+const FullScreenControls = ({isFullScreen, enterFullScreenHandler, exitFullScreenHandler}) => {
   return (
     <Containter>
-      {!isFullScreen && <ViewerButton iconSrc={expand} onClickHandler={enterFullScreen} altText='enter fullscreen'/> }
-      {isFullScreen && <ViewerButton iconSrc={minimize} onClickHandler={exitFullScreen} altText='exit fullscreen' /> }
+      {!isFullScreen && <ViewerButton iconSrc={expand} onClickHandler={enterFullScreenHandler} altText='enter fullscreen'/> }
+      {isFullScreen && <ViewerButton iconSrc={minimize} onClickHandler={exitFullScreenHandler} altText='exit fullscreen' /> }
     </Containter>
   )
 }
 
 FullScreenControls.propTypes = {
   isFullScreen: PropTypes.bool.isRequired,
-  enterFullScreen: PropTypes.func.isRequired,
-  exitFullScreen: PropTypes.func.isRequired
+  enterFullScreenHandler: PropTypes.func.isRequired,
+  exitFullScreenHandler: PropTypes.func.isRequired
 }
 
 export default FullScreenControls

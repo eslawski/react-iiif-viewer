@@ -31,7 +31,7 @@ const Right = styled.div`
 
 const Toolbar = ({left, center, right}) => {
   return (
-    <Container>
+    <Container data-testid="toolbar">
       <Left>{left}</Left>
       <Center>{center}</Center>
       <Right>{right}</Right>

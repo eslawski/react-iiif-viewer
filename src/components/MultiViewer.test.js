@@ -90,19 +90,21 @@ describe('<MultiViewer />', () => {
     expect(getByTestId('drawer')).not.toHaveClass("opened")
   })
 
-  // ********************************* ASYNC TESTS ***************************************************
-  // Needed to install '@babel/plugin-transform-runtime' and add to .babelrc to get async test to work
-  // *************************************************************************************************
-  it('closes and opens the drawer when the more images button is clicked',  async () => {
+  it('closes and opens the drawer when the more images button is clicked',   () => {
     const { getByTestId, getByTitle } = renderViewer()
 
     const drawerButton = getByTitle('more images')
-    fireEvent.click(drawerButton)
-
-    await waitFor(() => expect(getByTestId('drawer')).toHaveClass("opened"))
+    const drawer = getByTestId('drawer')
 
     fireEvent.click(drawerButton)
-    await waitFor(() => expect(getByTestId('drawer')).not.toHaveClass("opened"))
 
+    expect(drawer).toHaveClass("opened")
+    expect(drawer).toHaveStyle("top: 0")
+
+
+    fireEvent.click(drawerButton)
+
+    expect(drawer).not.toHaveClass("opened")
+    expect(drawer).toHaveStyle("top: 100%")
   })
 })

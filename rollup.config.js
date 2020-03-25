@@ -2,7 +2,7 @@ import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 import external from "rollup-plugin-peer-deps-external";
-import svg from 'rollup-plugin-svg'
+const svgr = require('@svgr/rollup')
 
 import packageJSON from "./package.json";
 const input = "./src/index.js";
@@ -24,7 +24,7 @@ export default [
         extensions: ['.js', '.jsx']
       }),
       commonjs(),
-      svg()
+      svgr()
     ]
   }
 ];

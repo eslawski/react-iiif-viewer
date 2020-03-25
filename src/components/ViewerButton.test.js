@@ -7,22 +7,22 @@ let onClickHandler = jest.fn();
 function renderViewerButton(){
   return render(<ViewerButton
     onClickHandler={onClickHandler}
-    iconSrc={"/some-path"}
-    altText={"test alt text"}
+    icon={<div/>}
+    titleText={"test title text"}
   />)
 }
 
 describe('<ViewerButton />', () => {
   it('it renders the proper alt text', () => {
-    const { getByAltText } = renderViewerButton()
+    const { getByTitle } = renderViewerButton()
 
-    expect(getByAltText('test alt text')).toBeTruthy()
+    expect(getByTitle('test title text')).toBeTruthy()
   })
 
   it('calls the onClickHandler when clicked', () => {
-    const { getByAltText } = renderViewerButton()
+    const { getByTitle } = renderViewerButton()
 
-    const testButton = getByAltText("test alt text")
+    const testButton = getByTitle("test title text")
 
     fireEvent.click(testButton)
     expect(onClickHandler).toBeCalled()

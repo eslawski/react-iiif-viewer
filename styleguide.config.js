@@ -1,5 +1,7 @@
 module.exports = {
-  components: 'src/components/viewers/*.{js,jsx,ts,tsx}',
+  components: 'src/components/*.{js,jsx,ts,tsx}',
+  usageMode: 'expand',
+  skipComponentsWithoutExample: true,
   webpackConfig: {
     module: {
       rules: [
@@ -9,15 +11,8 @@ module.exports = {
           loader: "babel-loader"
         },
         {
-          test: /\.(png|jp(e*)g|svg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'images/[hash]-[name].[ext]',
-              }
-            }
-          ]
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
         }
       ]
     }

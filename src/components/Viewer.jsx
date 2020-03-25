@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "@emotion/styled";
-import ZoomControls from '../ZoomControls'
-import FullScreenControls from '../FullScreenControls'
-import OpenSeadragonViewer from '../OpenSeadragonViewer'
-import FullScreenAPI from '../../helpers/fullscreenApi'
+import ZoomControls from './ZoomControls'
+import FullScreenControls from './FullScreenControls'
+import OpenSeadragonViewer from './OpenSeadragonViewer'
+import FullScreenAPI from '../helpers/FullScreenAPI'
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
   position: relative;
   width: ${props => props.viewerWidth};
   height: ${props => props.viewerHeight};
@@ -18,7 +16,7 @@ class Viewer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isFullScreen: false
+      isInFullScreen: false
     }
 
     this.reactIIIFViewerRef = React.createRef()
@@ -27,12 +25,12 @@ class Viewer extends React.Component {
 
   enterFullScreen() {
     FullScreenAPI.enter(this.reactIIIFViewerRef.current)
-    this.setState({isFullScreen: true})
+    this.setState({isInFullScreen: true})
   }
 
   exitFullScreen() {
     FullScreenAPI.exit()
-    this.setState({isFullScreen: false})
+    this.setState({isInFullScreen: false})
   }
 
   zoomIn() {
@@ -63,7 +61,7 @@ class Viewer extends React.Component {
         />
 
         <FullScreenControls
-          isFullScreen={this.state.isFullScreen}
+          isInFullScreen={this.state.isInFullScreen}
           enterFullScreenHandler={() => this.enterFullScreen()}
           exitFullScreenHandler={() => this.exitFullScreen()}
         />
@@ -80,6 +78,6 @@ Viewer.propTypes = {
 
 Viewer.defaultProps = {
   width: '800px',
-  height: '500px'
+  height: '450px'
 }
 export default Viewer

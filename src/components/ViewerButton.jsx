@@ -13,23 +13,18 @@ const Button = styled.button`
   outline: none;
 `
 
-const Img = styled.img`
-  height: 80%;
-  width: 80%;
-`
-
-const ViewerButton = ({onClickHandler, iconSrc, altText}) => {
+const ViewerButton = ({onClickHandler, icon, titleText}) => {
   return (
-    <Button onClick={onClickHandler}>
-      <Img src={iconSrc} alt={altText} />
+    <Button onClick={onClickHandler} title={titleText}>
+      {icon}
     </Button>
   )
 }
 
 ViewerButton.propTypes = {
   onClickHandler: PropTypes.func,
-  iconSrc: PropTypes.string,
-  altText: PropTypes.string
+  icon: PropTypes.element,
+  titleText: PropTypes.string
 }
 
 export default ViewerButton

@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "@emotion/styled";
 import ViewerButton from './ViewerButton'
-import plus from '../images/plus.svg'
-import minus from '../images/minus.svg'
+import Plus from '../images/plus.svg'
+import Minus from '../images/minus.svg'
 
 const Container = styled.div`
   position: absolute;
@@ -24,8 +24,16 @@ const Container = styled.div`
 const ZoomControls = ({zoomInHandler, zoomOutHandler}) => {
   return (
     <Container>
-      <ViewerButton onClickHandler={zoomInHandler} iconSrc={plus} altText='zoom in' />
-      <ViewerButton onClickHandler={zoomOutHandler} iconSrc={minus} altText='zoom out' />
+      <ViewerButton
+        onClickHandler={zoomInHandler}
+        icon={<Plus/>}
+        titleText='zoom in'
+      />
+      <ViewerButton
+        onClickHandler={zoomOutHandler}
+        icon={<Minus/>}
+        titleText='zoom out'
+      />
     </Container>
   )
 }

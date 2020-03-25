@@ -1,10 +1,9 @@
-import { render, fireEvent } from "@testing-library/react"
+import '@testing-library/jest-dom'
+
+import { render, fireEvent, waitFor } from "@testing-library/react"
 import React from "react"
 import MultiViewer from './MultiViewer'
 import { mockOpen } from '../../__mocks__/openseadragon'
-import { matchers } from 'jest-emotion'
-
-expect.extend(matchers)
 
 function renderViewer(){
   return render(<MultiViewer
@@ -32,7 +31,7 @@ describe('<MultiViewer />', () => {
   it('disables the previous button when on the first image', () => {
     const { getByTitle } = renderViewer()
 
-    expect(getByTitle('previous image')).toHaveStyleRule('opacity', '0.3')
+    expect(getByTitle('previous image')).toHaveStyle('opacity: 0.3;')
   })
 
   it('does nothing when the previous button is clicked on the first image', () => {
@@ -50,7 +49,7 @@ describe('<MultiViewer />', () => {
     fireEvent.click(nextButton)
     fireEvent.click(nextButton)
 
-    expect(nextButton).toHaveStyleRule('opacity', '0.3')
+    expect(nextButton).toHaveStyle('opacity: 0.3;')
   })
 
   it('does nothing when the next button is clicked on the last image', () => {
@@ -83,5 +82,27 @@ describe('<MultiViewer />', () => {
     fireEvent.click(previousButton)
 
     expect(mockOpen).toHaveBeenCalled()
+  })
+
+  it('renders initially with the drawer closed', () => {
+    const { getByTestId } = renderViewer()
+
+    expect(getByTestId('drawer')).not.toHaveClass("opened")
+  })
+
+  // ********************************* ASYNC TESTS ***************************************************
+  // Needed to install '@babel/plugin-transform-runtime' and add to .babelrc to get async test to work
+  // *************************************************************************************************
+  it('closes and opens the drawer when the more images button is clicked',  async () => {
+    const { getByTestId, getByTitle } = renderViewer()
+
+    const drawerButton = getByTitle('more images')
+    fireEvent.click(drawerButton)
+
+    await waitFor(() => expect(getByTestId('drawer')).toHaveClass("opened"))
+
+    fireEvent.click(drawerButton)
+    await waitFor(() => expect(getByTestId('drawer')).not.toHaveClass("opened"))
+
   })
 })

@@ -8,6 +8,7 @@ import Right from '../images/right.svg'
 import Gallery from '../images/gallery.svg'
 
 import ToolbarButton from './ToolbarButton'
+import Drawer from './Drawer'
 
 const TOOLBAR_HEIGHT = "50px"
 
@@ -16,25 +17,11 @@ const Container = styled.div`
   height: ${props => props.viewerHeight};
 `
 
-const TestWrapper = styled.div`
+const ViewerWrapper = styled.div`
   height: ${props => props.wrapperHeight};
   width: 100%;
   position: relative;
   overflow-y: hidden;
-`
-
-const Drawer = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: #000000;
-  opacity: .7;
-  position: absolute;
-  top: 100%;
-  transition: top .5s ease-in;
-
-  &.open {
-    top: 0;
-  }
 `
 
 class MultiViewer extends React.Component {
@@ -80,14 +67,14 @@ class MultiViewer extends React.Component {
         viewerWidth={this.props.width}
         viewerHeight={this.props.height}>
 
-        <TestWrapper wrapperHeight={`calc(${this.props.height} - ${TOOLBAR_HEIGHT})`}>
+        <ViewerWrapper wrapperHeight={`calc(${this.props.height} - ${TOOLBAR_HEIGHT})`}>
           <Viewer
             iiifUrl={this.props.iiifUrls[this.state.currentIndex]}
             height="100%"
             width="100%"
           />
-          <Drawer className={this.state.drawerOpen ? 'open' : ''}/>
-        </TestWrapper>
+          <Drawer isOpen={this.state.drawerOpen}/>
+        </ViewerWrapper>
 
         <Toolbar
           left={

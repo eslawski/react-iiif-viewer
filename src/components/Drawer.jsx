@@ -9,6 +9,7 @@ const Container = styled.div`
   position: absolute;
   top: 100%;
   transition: top .5s ease-in;
+  z-index: 1000;
 
   &.opened {
     top: 0;

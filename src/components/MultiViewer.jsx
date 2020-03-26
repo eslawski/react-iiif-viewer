@@ -87,8 +87,10 @@ class MultiViewer extends React.Component {
   }
 
   getViewerWrapperHeight() {
-    debugger;
-    return `calc(${this.props.height} - ${this.props.showToolbar ? TOOLBAR_HEIGHT : "0px"})`
+    const currentViewerHeight = this.state.isInFullScreen ? "100%" : this.props.height;
+    const toolbarHeight = this.props.showToolbar ? TOOLBAR_HEIGHT : "0px"
+
+    return `calc(${currentViewerHeight} - ${toolbarHeight})`
   }
 
   render() {

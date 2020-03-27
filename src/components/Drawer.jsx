@@ -44,7 +44,7 @@ const ThumbnailWrapper = styled.div`
     height: 100%;
     width: 100%;
     position: relative;
-    opacity: .7;
+    opacity: .6;
 
     &:hover {
       opacity: 1;
@@ -60,7 +60,7 @@ const ThumbnailWrapper = styled.div`
         width: 100%;
         height: 100%;
         position: absolute;
-        outline: 5px solid ${theme.thumbnailSelectedColor};
+        outline: 3px solid ${theme.thumbnailSelectedColor};
     }
 `
 

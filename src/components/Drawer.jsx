@@ -20,11 +20,16 @@ const Container = styled.div`
 const ThumbnailGrid = styled.div`
   height: 100%;
   padding: 30px 30px 0 30px;
+  overflow-y: auto;
+  box-sizing: border-box;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: ${props => props.isInFullScreen ? theme.thumbnailHeightFullscreen: theme.thumbnailHeight};
   grid-gap: 20px;
-  overflow-y: auto;
+  grid-template-columns: repeat(4, 1fr);
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
 
   &::-webkit-scrollbar-track {
     border-radius: 10px;

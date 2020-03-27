@@ -26,7 +26,7 @@ class OpenSeadragonViewer extends React.Component {
       id: this.viewerId,
       tileSources: [this.props.iiifUrl],
       showNavigationControl: false,
-      loadTilesWithAjax: true
+      visibilityRatio: .9
     })
   }
 

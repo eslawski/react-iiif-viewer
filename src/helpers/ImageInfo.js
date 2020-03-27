@@ -26,7 +26,7 @@ export function fetchImageInfo(iiifUrl) {
 export function fetchImageInfos(iiifUrls) {
   const imageInfoRequests = iiifUrls.map((iiifUrl) => fetchImageInfo(iiifUrl))
 
-  return axios.all(imageInfoRequests)
+  return Promise.all(imageInfoRequests)
     .then((response) => {
       const imageInfos = []
 

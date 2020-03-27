@@ -92,6 +92,7 @@ const Drawer = ({
           <ThumbnailWrapper
             key={index}
             className={currentIndex === index ? 'current' : ''}
+            data-testid={`thumbnail-${index}`}
             onClick={() => onThumbnailSelectedHandler(index)}
           >
             <Thumbnail src={url} />

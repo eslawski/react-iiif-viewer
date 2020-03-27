@@ -12,7 +12,7 @@ import FullScreenAPI from '../helpers/FullScreenAPI'
 import OpenSeadragonViewer from './OpenSeadragonViewer'
 import ZoomControls from './ZoomControls'
 import FullScreenControls from './FullScreenControls'
-import {fetchImageInfos} from '../helpers/ImageInfo'
+import { fetchImageInfos } from '../helpers/ImageInfo'
 import theme from '../helpers/theme'
 
 
@@ -43,6 +43,7 @@ class MultiViewer extends React.Component {
 
     this.reactIIIFViewerRef = React.createRef()
     this.openSeadragonRef = React.createRef()
+    this.handleFullScreenChange = this.handleFullScreenChange.bind(this)
   }
 
   handleFullScreenChange() {
@@ -64,10 +65,18 @@ class MultiViewer extends React.Component {
         })
       })
 
-    document.addEventListener("fullscreenchange", (event) => this.handleFullScreenChange(event));
-    document.addEventListener("mozfullscreenchange", (event) => this.handleFullScreenChange(event));
-    document.addEventListener("webkitfullscreenchange", (event) => this.handleFullScreenChange(event));
-    document.addEventListener("msfullscreenchange", (event) => this.handleFullScreenChange(event));
+    // Unable to detect the ESC keypress when using the fullscreen api. As a result, must listen to these events:
+    document.addEventListener("fullscreenchange", this.handleFullScreenChange);
+    document.addEventListener("mozfullscreenchange", this.handleFullScreenChange);
+    document.addEventListener("webkitfullscreenchange", this.handleFullScreenChange);
+    document.addEventListener("msfullscreenchange", this.handleFullScreenChange);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("fullscreenchange", this.handleFullScreenChange);
+    document.removeEventListener("webkitfullscreenchange", this.handleFullScreenChange);
+    document.removeEventListener("mozfullscreenchange", this.handleFullScreenChange);
+    document.removeEventListener("msfullscreenchange", this.handleFullScreenChange);
   }
 
   enterFullScreen() {
@@ -133,7 +142,9 @@ class MultiViewer extends React.Component {
         data-testid='react-iiif-viewer'
         ref={this.reactIIIFViewerRef}
         viewerWidth={this.props.width}
-        viewerHeight={this.props.height}>
+        viewerHeight={this.props.height}
+        data-cur-iiif-url={this.props.iiifUrls[this.state.currentIndex]}
+      >
 
         <ViewerWrapper>
           <OpenSeadragonViewer

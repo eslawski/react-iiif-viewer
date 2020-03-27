@@ -1,9 +1,19 @@
 import '@testing-library/jest-dom'
 
-import { render, fireEvent, waitFor } from "@testing-library/react"
+import { render, fireEvent } from "@testing-library/react"
 import React from "react"
 import MultiViewer from './MultiViewer'
-import {mockApplyConstraints, mockOpen, mockZoomBy} from '../../__mocks__/openseadragon'
+import { mockApplyConstraints, mockOpen, mockZoomBy } from '../../__mocks__/openseadragon'
+
+function simulateEnterFullscreen() {
+  document.fullscreenElement = "something non empty"
+  fireEvent(document, new CustomEvent("fullscreenchange"))
+}
+
+function simulateExitFullScreen() {
+  document.fullscreenElement = null
+  fireEvent(document, new CustomEvent("fullscreenchange"))
+}
 
 function renderViewer(){
   return render(<MultiViewer
@@ -21,6 +31,13 @@ describe('<MultiViewer />', () => {
     mockZoomBy.mockClear();
     mockApplyConstraints.mockClear();
   });
+
+  it('renders with the first image', () => {
+    const { getByTestId } = renderViewer()
+
+    const viewerElement = getByTestId('react-iiif-viewer')
+    expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url1")
+  })
 
   it('renders the toolbar buttons', () => {
     const { getByTitle } = renderViewer()
@@ -66,22 +83,29 @@ describe('<MultiViewer />', () => {
   })
 
   it('it opens the next image when the next button is clicked', () => {
-    const { getByTitle } = renderViewer()
+    const { getByTitle, getByTestId } = renderViewer()
+    const viewerElement = getByTestId('react-iiif-viewer')
 
     const nextButton = getByTitle('next image')
     fireEvent.click(nextButton)
 
     expect(mockOpen).toHaveBeenCalled()
+    expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url2")
   })
 
   it('it opens the previous image when the previous button is clicked', () => {
-    const { getByTitle } = renderViewer()
+    const { getByTitle, getByTestId } = renderViewer()
 
     const nextButton = getByTitle('next image')
     const previousButton = getByTitle('previous image')
+    const viewerElement = getByTestId('react-iiif-viewer')
+
     fireEvent.click(nextButton)
+    expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url2")
+
     mockOpen.mockClear();
     fireEvent.click(previousButton)
+    expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url1")
 
     expect(mockOpen).toHaveBeenCalled()
   })
@@ -116,7 +140,7 @@ describe('<MultiViewer />', () => {
     expect(document.fullscreenElement).toBeFalsy()
   })
 
-  it('should request to enter full screen when the enter fullscreen button is clicked', () => {
+  it('should call requestFullScreen when the enter fullscreen button is clicked', () => {
     const { getByTitle, getByTestId } = renderViewer()
 
     const viewerElement = getByTestId('react-iiif-viewer')
@@ -128,12 +152,10 @@ describe('<MultiViewer />', () => {
     expect(viewerElement.requestFullScreen).toBeCalled()
   })
 
-  it('should exit full screen when the exit fullscreen button is clicked', () => {
-    document.exitFullscreen = jest.fn()
+  it('should call exitFullscreen when the exit fullscreen button is clicked while in full screen mode', () => {
     const { getByTitle } = renderViewer()
-
-    const enterFullScreenButton = getByTitle('enter fullscreen')
-    fireEvent.click(enterFullScreenButton);
+    document.exitFullscreen = jest.fn()
+    simulateEnterFullscreen()
 
     const exitFullScreenButton = getByTitle('exit fullscreen')
     fireEvent.click(exitFullScreenButton);
@@ -167,4 +189,36 @@ describe('<MultiViewer />', () => {
     expect(getByTestId("toolbar")).toBeTruthy()
   })
 
+  it('should highlight the currently selected thumbnail when the drawer is open', async () => {
+    const { getByTitle, findByTestId } = renderViewer()
+
+    const drawerButton = getByTitle('more images')
+    fireEvent.click(drawerButton)
+    const firstThumbnail = await findByTestId("thumbnail-0")
+
+    expect(firstThumbnail).toHaveClass('current')
+    expect(firstThumbnail).toHaveStyle('opacity: 1;')
+    // TODO not sure how to test red border
+  })
+
+  it('clicking on a different thumbnail sets the new image', async () => {
+    const { getByTitle, findByTestId, getByTestId } = renderViewer()
+
+    const drawerButton = getByTitle('more images')
+    fireEvent.click(drawerButton)
+    const secondThumbnail = await findByTestId("thumbnail-1")
+    fireEvent.click(secondThumbnail)
+
+    // New image gets the proper styling in the thumbnail drawer
+    expect(secondThumbnail).toHaveClass('current')
+    expect(secondThumbnail).toHaveStyle('opacity: 1;')
+
+    // The drawer is closed
+    const drawer = getByTestId("drawer")
+    expect(drawer).not.toHaveClass("opened")
+
+    // The proper image is set
+    const viewerElement = getByTestId('react-iiif-viewer')
+    expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url2")
+  })
 })

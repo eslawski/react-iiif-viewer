@@ -45,6 +45,17 @@ class MultiViewer extends React.Component {
     this.openSeadragonRef = React.createRef()
   }
 
+  handleFullScreenChange() {
+    if(document.fullscreenElement) {
+      this.setState({isInFullScreen: true})
+    } else {
+      this.setState({
+        isInFullScreen: false,
+        drawerOpen: false
+      })
+    }
+  }
+
   componentDidMount() {
     fetchImageInfos(this.props.iiifUrls)
       .then((imageInfos) => {
@@ -52,16 +63,19 @@ class MultiViewer extends React.Component {
           imageInfos: imageInfos
         })
       })
+
+    document.addEventListener("fullscreenchange", (event) => this.handleFullScreenChange(event));
+    document.addEventListener("mozfullscreenchange", (event) => this.handleFullScreenChange(event));
+    document.addEventListener("webkitfullscreenchange", (event) => this.handleFullScreenChange(event));
+    document.addEventListener("msfullscreenchange", (event) => this.handleFullScreenChange(event));
   }
 
   enterFullScreen() {
     FullScreenAPI.enter(this.reactIIIFViewerRef.current)
-    this.setState({isInFullScreen: true})
   }
 
   exitFullScreen() {
     FullScreenAPI.exit()
-    this.setState({isInFullScreen: false})
   }
 
   zoomIn() {

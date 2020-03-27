@@ -1,5 +1,4 @@
 import React from 'react'
-import Viewer from './Viewer'
 import PropTypes from 'prop-types'
 import Toolbar from './Toolbar'
 import styled from '@emotion/styled'
@@ -13,8 +12,9 @@ import FullScreenAPI from '../helpers/FullScreenAPI'
 import OpenSeadragonViewer from './OpenSeadragonViewer'
 import ZoomControls from './ZoomControls'
 import FullScreenControls from './FullScreenControls'
+import {fetchImageInfos} from '../helpers/ImageInfo'
+import theme from '../helpers/theme'
 
-const TOOLBAR_HEIGHT = "50px"
 
 const Container = styled.div`
   position: relative;
@@ -35,11 +35,21 @@ class MultiViewer extends React.Component {
     this.state = {
       currentIndex: 0,
       drawerOpen: false,
-      isInFullScreen: false
+      isInFullScreen: false,
+      imageInfos: []
     }
 
     this.reactIIIFViewerRef = React.createRef()
     this.openSeadragonRef = React.createRef()
+  }
+
+  componentDidMount() {
+    fetchImageInfos(this.props.iiifUrls)
+      .then((imageInfos) => {
+        this.setState({
+          imageInfos: imageInfos
+        })
+      })
   }
 
   enterFullScreen() {
@@ -72,6 +82,13 @@ class MultiViewer extends React.Component {
     })
   }
 
+  setImage(index) {
+    this.setState({
+      currentIndex: index
+    })
+    this.toggleDrawer()
+  }
+
   toggleDrawer() {
     this.setState({
       drawerOpen: !this.state.drawerOpen
@@ -88,13 +105,18 @@ class MultiViewer extends React.Component {
 
   getViewerWrapperHeight() {
     const currentViewerHeight = this.state.isInFullScreen ? "100%" : this.props.height;
-    const toolbarHeight = this.props.showToolbar ? TOOLBAR_HEIGHT : "0px"
+    const toolbarHeight = this.props.showToolbar ? theme.toolbarHeight : "0px"
 
     return `calc(${currentViewerHeight} - ${toolbarHeight})`
   }
 
+  getThumbnailUrls() {
+    return this.state.imageInfos.map((imageInfo) => {
+      return imageInfo.getThumbnailUrl();
+    })
+  }
+
   render() {
-    const buttonColor = "#CDCDCD";
 
     return (
       <Container
@@ -110,7 +132,13 @@ class MultiViewer extends React.Component {
             ref={this.openSeadragonRef}
           />
 
-          <Drawer isOpen={this.state.drawerOpen}/>
+          <Drawer
+            thumbnailUrls={this.getThumbnailUrls()}
+            isOpen={this.state.drawerOpen}
+            isInFullScreen={this.state.isInFullScreen}
+            currentIndex={this.state.currentIndex}
+            onThumbnailSelectedHandler={(index) => this.setImage(index)}
+          />
         </ViewerWrapper>
 
         <ZoomControls
@@ -128,7 +156,7 @@ class MultiViewer extends React.Component {
           <Toolbar
             left={
               <ToolbarButton
-                icon={<Left fill={buttonColor}/>}
+                icon={<Left fill={theme.toolbarButtonColor}/>}
                 titleText="previous image"
                 onClickHandler={() => this.previousImage()}
                 isDisabled={this.isFirstImage()}
@@ -136,14 +164,14 @@ class MultiViewer extends React.Component {
             }
             center={
               <ToolbarButton
-                icon={<Gallery fill={buttonColor}/>}
+                icon={<Gallery fill={theme.toolbarButtonColor}/>}
                 titleText="more images"
                 onClickHandler={() => this.toggleDrawer()}
               />
             }
             right={
               <ToolbarButton
-                icon={<Right fill={buttonColor}/>}
+                icon={<Right fill={theme.toolbarButtonColor}/>}
                 titleText="next image"
                 onClickHandler={() => this.nextImage()}
                 isDisabled={this.isLastImage()}

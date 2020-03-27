@@ -20,13 +20,15 @@ const Container = styled.div`
   position: relative;
   width: ${props => props.viewerWidth};
   height: ${props => props.viewerHeight};
+  display: flex;
+  flex-direction: column;
 `
 
 const ViewerWrapper = styled.div`
-  height: ${props => props.wrapperHeight};
   width: 100%;
   position: relative;
   overflow-y: hidden;
+  flex-grow: 1;
 `
 
 class MultiViewer extends React.Component {
@@ -103,13 +105,6 @@ class MultiViewer extends React.Component {
     return this.state.currentIndex === this.props.iiifUrls.length - 1;
   }
 
-  getViewerWrapperHeight() {
-    const currentViewerHeight = this.state.isInFullScreen ? "100%" : this.props.height;
-    const toolbarHeight = this.props.showToolbar ? theme.toolbarHeight : "0px"
-
-    return `calc(${currentViewerHeight} - ${toolbarHeight})`
-  }
-
   getThumbnailUrls() {
     return this.state.imageInfos.map((imageInfo) => {
       return imageInfo.getThumbnailUrl();
@@ -126,7 +121,7 @@ class MultiViewer extends React.Component {
         viewerWidth={this.props.width}
         viewerHeight={this.props.height}>
 
-        <ViewerWrapper wrapperHeight={this.getViewerWrapperHeight()}>
+        <ViewerWrapper>
           <OpenSeadragonViewer
             iiifUrl={this.props.iiifUrls[this.state.currentIndex]}
             ref={this.openSeadragonRef}
@@ -190,11 +185,6 @@ MultiViewer.propTypes = {
   iiifUrls: PropTypes.array.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
-  /**
-   * A prop that should not be visible in the documentation.
-   *
-   * @ignore
-   */
   showToolbar: PropTypes.bool
 }
 

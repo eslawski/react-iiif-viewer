@@ -18,7 +18,13 @@ body {
 }
 
 .react-iiif-viewer {
-  padding-bottom: 100px;
+  margin-bottom: 100px;
+}
+
+@media only screen and (max-width: 800px) {
+  .react-iiif-viewer  {
+    height: 400px !important;
+  }
 }
 
 h1 {

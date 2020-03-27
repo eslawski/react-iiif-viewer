@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from "@emotion/styled";
+import theme from '../helpers/theme'
 
 const Container = styled.div`
   display: flex;
-  height: 50px;
+  height: ${theme.toolbarHeight};
   width: 100%;
   background-color: #000000;
 `

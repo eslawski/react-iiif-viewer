@@ -8,6 +8,7 @@ export default class App extends Component {
     return (
       <>
         <h2>MultiViewer</h2>
+        <p>A component for interacting with many IIIF images at once.</p>
         <MultiViewer
           height="500px"
           width="100%"
@@ -32,6 +33,7 @@ export default class App extends Component {
         />
 
         <h2>Viewer</h2>
+        <p>A simple component for displaying one IIIF image.</p>
         <Viewer
           height="500px"
           width="100%"

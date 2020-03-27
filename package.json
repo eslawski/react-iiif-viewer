@@ -1,9 +1,11 @@
 {
-  "name": "react-sample-components-library",
+  "name": "react-iiif-viewer",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "start": "parcel watch src/index.js",
+    "build": "parcel build src/index.js --global react-iiif-viewer",
     "start-demo": "parcel example/src/index.html --out-dir example_dist --open",
     "build-demo": "parcel build example/src/index.html --out-dir example_dist --public-url ./",
     "publish-demo": "gh-pages -d example_dist",

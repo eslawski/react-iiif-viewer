@@ -23,3 +23,4 @@ yarn-error.log*
 .idea
 coverage/
 .cache
+example_dist

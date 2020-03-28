@@ -9,7 +9,7 @@ export default class App extends Component {
       <>
         <div className="description">
           <h2>MultiViewer</h2>
-          <p>A component for interacting with many IIIF images at once.</p>
+          <p>A component for displaying many IIIF images.</p>
         </div>
 
         <MultiViewer

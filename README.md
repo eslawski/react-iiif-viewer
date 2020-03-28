@@ -6,7 +6,7 @@ A React component library built on [OpenSeadragon](https://openseadragon.github.
 
 ### What is IIIF?
 
-The "International Image Interoperability Framework", or [IIIF](https://iiif.io/) for short, is an open set of technical standards that provide uniformity to the way image-based resources are presented and delivered to end users.
+[IIIF](https://iiif.io/) (pronounced “Triple-Eye-Eff”) is an open set of technical specifications that aim to provide uniformity to the way image-based resources are presented and delivered to end users.
 
 IIIF images are delivered via a IIIF compatible image server. This server is responsible for breaking down large images into small tiles. The browser then makes requests for these tiles as the user zooms/pans around the image. As the user zooms in deeper, high resolution tiles are requested in order to maintain quality and performance. Fetched tiles are stitched together in real-time resulting in seamless user experience.
 

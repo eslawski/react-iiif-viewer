@@ -57888,7 +57888,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = (0, _taggedTemplateLiteral2.default)(["\n  position: relative;\n  width: ", ";\n  height: ", ";\n  display: flex;\n  flex-direction: column;\n"]);
+  var data = (0, _taggedTemplateLiteral2.default)(["\n  position: relative;\n  width: ", ";\n  height: ", ";\n  display: flex;\n  flex-direction: column;\n\n  &.fullscreen {\n    height: 100%;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -57930,7 +57930,7 @@ var MultiViewer = /*#__PURE__*/function (_React$Component) {
   (0, _createClass2.default)(MultiViewer, [{
     key: "handleFullScreenChange",
     value: function handleFullScreenChange() {
-      if (document.fullscreenElement) {
+      if (document.fullscreenElement || document.webkitCurrentFullScreenElement || document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
         this.setState({
           isInFullScreen: true
         });
@@ -58037,7 +58037,7 @@ var MultiViewer = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return /*#__PURE__*/_react.default.createElement(Container, {
-        className: "react-iiif-viewer",
+        className: "react-iiif-viewer ".concat(this.state.isInFullScreen ? 'fullscreen' : ''),
         "data-testid": "react-iiif-viewer",
         ref: this.reactIIIFViewerRef,
         viewerWidth: this.props.width,
@@ -58265,7 +58265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62067" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58692" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

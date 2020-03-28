@@ -12,6 +12,8 @@ The "International Image Interoperability Framework", or [IIIF](https://iiif.io/
 
 IIIF images are served from a special server that breaks down the original image into small tiles. The browser can then make requests for these tiles as the user zooms/pans around the image. As the user zooms in deeper, high resolution tiles are requested to maintain quality and performance.
 
+Interested in making one of your own images IIIF compatible? Check out [iiifhosting](https://www.iiifhosting.com/). It allows you to host up to 5 images for free.
+
 ### Installation
 
 Install via `npm`:
@@ -63,6 +65,21 @@ const iiifUrls = [
 
 ### Development
 
+After cloning the repo, install it's dependencies:
 
+```
+$ cd react-iiif-viewer
+$ npm install
+```
 
-### How do I make these IIIF images?
+This project uses [Parcel](https://parceljs.org/) for bundling and running of a development server. To run the demo application with hot reloading:
+
+```
+$ npm run start-demo
+```
+
+The unit tests are written using [react-testing-library](https://github.com/testing-library/react-testing-library). To run them:
+
+```
+$ npm test
+```

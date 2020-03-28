@@ -22,6 +22,10 @@ const Container = styled.div`
   height: ${props => props.viewerHeight};
   display: flex;
   flex-direction: column;
+
+  &.fullscreen {
+    height: 100%;
+  }
 `
 
 const ViewerWrapper = styled.div`
@@ -48,7 +52,11 @@ class MultiViewer extends React.Component {
   }
 
   handleFullScreenChange() {
-    if(document.fullscreenElement) {
+    if(document.fullscreenElement
+      || document.webkitCurrentFullScreenElement
+      ||document.fullscreenElement
+      || document.webkitFullscreenElement
+      || document.mozFullScreenElement) {
       this.setState({isInFullScreen: true})
     } else {
       this.setState({
@@ -139,7 +147,7 @@ class MultiViewer extends React.Component {
 
     return (
       <Container
-        className='react-iiif-viewer'
+        className={`react-iiif-viewer ${this.state.isInFullScreen ? 'fullscreen' : ''}`}
         data-testid='react-iiif-viewer'
         ref={this.reactIIIFViewerRef}
         viewerWidth={this.props.width}

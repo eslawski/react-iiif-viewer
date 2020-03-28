@@ -12,7 +12,10 @@ The "International Image Interoperability Framework", or [IIIF](https://iiif.io/
 
 IIIF images are delivered via a IIIF compatible image server. This server is responsible for breaking down large images into small tiles. The browser then makes requests for these tiles as the user zooms/pans around the image. As the user zooms in deeper, high resolution tiles are requested in order to maintain quality and performance. Fetched tiles are stitched together in real-time resulting in seamless user experience.
 
-Interested in making one of your own images IIIF compatible? Check out [iiifhosting](https://www.iiifhosting.com/). It allows you to host up to 5 images for free.
+#### Where do I get these IIIF compatible images?
+[The Getty](https://www.getty.edu/) hosts thousands of images available for free use via their [Open Content Program](http://www.getty.edu/about/whatwedo/opencontent.html).
+
+If you would like to create IIIF images you can also upload and host a small collection of your own for free at [iiifhosting.com](https://www.iiifhosting.com/).
 
 ### Installation
 

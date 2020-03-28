@@ -12,10 +12,10 @@ export default class ImageInfo {
   }
 
   getThumbnailUrl() {
-    const idealWidth = 400;
-    const widthToRequest = Math.min(this.width, idealWidth)
+    const availableWidths = this.sizes.map((size) => size.width)
+    const minAvailableWidth = Math.min(...availableWidths)
 
-    return `${this.id}/full/${widthToRequest},/0/default.jpg`
+    return `${this.id}/full/${minAvailableWidth},/0/default.jpg`
   }
 }
 

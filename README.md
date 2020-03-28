@@ -30,9 +30,7 @@ A no frills viewer that displays one image at a time.
 ```
 import { Viewer } from "react-iiif-viewer"
 
-const iiifUrl = "https://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif/info.json"
-
-<Viewer iiifUrl=iiifUrl />
+<Viewer iiifUrl="https://data.getty.edu/museum/api/iiif/671108/info.json" />
 ```
 
 
@@ -49,12 +47,11 @@ A viewer that displays a collection of IIIF images via an expandable/collapsable
 ```
 import { MultiViewer } from "react-iiif-viewer"
 
-const iiifUrls = [
-    "https://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif/info.json",
-    "https://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif/info.json"
-]
-
-<MultiViewer iiifUrls={iiifUrls}/>
+<MultiViewer iiifUrls={[
+    "https://data.getty.edu/museum/api/iiif/671108/info.json",
+    "https://data.getty.edu/museum/api/iiif/194801/info.json",
+    "https://data.getty.edu/museum/api/iiif/268179/info.json"
+]}/>
 ```
 
 | prop       | required | type     | default | description                                                      |

@@ -15,24 +15,25 @@ export default class App extends Component {
         <MultiViewer
           height="500px"
           width="100%"
-          iiifUrls={["http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json",
-            "http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json",
-            "http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json",
-            "http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json",
-            "http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json",
-            "http://free.iiifhosting.com/iiif/ac56caab6e6d3e5957bdd565b067eb9299ab4faaaf5a4e437101666197add912/info.json",
-            "http://free.iiifhosting.com/iiif/795c60bc9c543b4896a4c4488fce787fde53fa3b116f0443b72968c1c834d26f/info.json",
-            "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json"]}
+          iiifUrls={[
+            "https://data.getty.edu/museum/api/iiif/671108/info.json",
+            "https://data.getty.edu/museum/api/iiif/194801/info.json",
+            "https://data.getty.edu/museum/api/iiif/268179/info.json",
+            "https://data.getty.edu/museum/api/iiif/878882/info.json",
+            "https://data.getty.edu/museum/api/iiif/449723/info.json",
+            "https://data.getty.edu/museum/api/iiif/50442/info.json",
+            "https://data.getty.edu/museum/api/iiif/702578/info.json",
+            "https://data.getty.edu/museum/api/iiif/635756/info.json",
+            "https://data.getty.edu/museum/api/iiif/43/info.json",
+            "https://data.getty.edu/museum/api/iiif/635494/info.json",
+            "https://data.getty.edu/museum/api/iiif/5657/info.json",
+            "https://data.getty.edu/museum/api/iiif/403294/info.json",
+            "https://data.getty.edu/museum/api/iiif/22322/info.json"
+
+
+
+
+          ]}
         />
 
         <div className="description">
@@ -42,7 +43,7 @@ export default class App extends Component {
         <Viewer
           height="500px"
           width="100%"
-          iiifUrl="http://free.iiifhosting.com/iiif/b7a919f56e394fd2cf4b7f477dfb9cbe75c796ec6a57611ca831f0409066407d/info.json"
+          iiifUrl="https://data.getty.edu/museum/api/iiif/671108/info.json"
         />
 
 

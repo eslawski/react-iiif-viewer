@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "start": "parcel watch src/index.js",
     "build": "parcel build src/index.js --global react-iiif-viewer",

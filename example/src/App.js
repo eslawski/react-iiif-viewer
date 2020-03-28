@@ -13,7 +13,7 @@ export default class App extends Component {
         </div>
 
         <MultiViewer
-          height="500px"
+          height="600px"
           width="100%"
           iiifUrls={[
             "https://data.getty.edu/museum/api/iiif/671108/info.json",
@@ -41,7 +41,7 @@ export default class App extends Component {
           <p>A simple component for displaying one IIIF image.</p>
         </div>
         <Viewer
-          height="500px"
+          height="600px"
           width="100%"
           iiifUrl="https://data.getty.edu/museum/api/iiif/671108/info.json"
         />

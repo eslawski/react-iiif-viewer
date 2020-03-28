@@ -86,3 +86,13 @@ To run them:
 ```
 $ npm test
 ```
+
+### Future Improvements
+
+1. CI pipeline with automatic publishing to Github pages
+1. Error states when image fails to load
+1. Error states when unable to fetch certain thumbnails
+1. Performance considerations when dealing with lots of images
+1. Ability to provide extra OpenSeadragon configs
+1. Add `prettier` code formatter
+1. Provide ability to render with thumbnail drawer open initially

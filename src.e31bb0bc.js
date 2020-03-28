@@ -58206,14 +58206,14 @@ var App = /*#__PURE__*/function (_Component) {
     value: function render() {
       return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
         className: "description"
-      }, /*#__PURE__*/_react.default.createElement("h2", null, "MultiViewer"), /*#__PURE__*/_react.default.createElement("p", null, "A component for interacting with many IIIF images at once.")), /*#__PURE__*/_react.default.createElement(_MultiViewer.default, {
-        height: "500px",
+      }, /*#__PURE__*/_react.default.createElement("h2", null, "MultiViewer"), /*#__PURE__*/_react.default.createElement("p", null, "A component for displaying many IIIF images.")), /*#__PURE__*/_react.default.createElement(_MultiViewer.default, {
+        height: "600px",
         width: "100%",
         iiifUrls: ["https://data.getty.edu/museum/api/iiif/671108/info.json", "https://data.getty.edu/museum/api/iiif/194801/info.json", "https://data.getty.edu/museum/api/iiif/268179/info.json", "https://data.getty.edu/museum/api/iiif/878882/info.json", "https://data.getty.edu/museum/api/iiif/449723/info.json", "https://data.getty.edu/museum/api/iiif/50442/info.json", "https://data.getty.edu/museum/api/iiif/702578/info.json", "https://data.getty.edu/museum/api/iiif/635756/info.json", "https://data.getty.edu/museum/api/iiif/43/info.json", "https://data.getty.edu/museum/api/iiif/635494/info.json", "https://data.getty.edu/museum/api/iiif/5657/info.json", "https://data.getty.edu/museum/api/iiif/403294/info.json", "https://data.getty.edu/museum/api/iiif/22322/info.json"]
       }), /*#__PURE__*/_react.default.createElement("div", {
         className: "description"
       }, /*#__PURE__*/_react.default.createElement("h2", null, "Viewer"), /*#__PURE__*/_react.default.createElement("p", null, "A simple component for displaying one IIIF image.")), /*#__PURE__*/_react.default.createElement(_Viewer.default, {
-        height: "500px",
+        height: "600px",
         width: "100%",
         iiifUrl: "https://data.getty.edu/museum/api/iiif/671108/info.json"
       }));
@@ -58265,7 +58265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51380" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62067" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

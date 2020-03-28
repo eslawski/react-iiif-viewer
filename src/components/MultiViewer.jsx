@@ -29,6 +29,7 @@ const ViewerWrapper = styled.div`
   position: relative;
   overflow-y: hidden;
   flex-grow: 1;
+  flex: 1;
 `
 
 class MultiViewer extends React.Component {

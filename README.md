@@ -2,9 +2,7 @@
 
 A React component library built on [OpenSeadragon](https://openseadragon.github.io/) for displaying high resolution images with deep zooming capabilities on mobile and desktop.
 
-Demo
-
-<pic
+![example](flower_example.gif)
 
 ### What is IIIF?
 
@@ -26,7 +24,7 @@ $ npm install react-iiif-viewer --save
 ### Components
 
 #### Viewer
-A no frills viewer that displays one image at a time.
+A basic viewer that displays one image at a time.
 
 ```
 import { Viewer } from "react-iiif-viewer"

@@ -7,8 +7,11 @@ export default class App extends Component {
   render () {
     return (
       <>
-        <h2>MultiViewer</h2>
-        <p>A component for interacting with many IIIF images at once.</p>
+        <div className="description">
+          <h2>MultiViewer</h2>
+          <p>A component for interacting with many IIIF images at once.</p>
+        </div>
+
         <MultiViewer
           height="500px"
           width="100%"
@@ -32,8 +35,10 @@ export default class App extends Component {
             "http://free.iiifhosting.com/iiif/7bc1d638cd84d5cbb0527d9d796ea1ac77268ebfbd8339e1a776c8332e54d2c8/info.json"]}
         />
 
-        <h2>Viewer</h2>
-        <p>A simple component for displaying one IIIF image.</p>
+        <div className="description">
+          <h2>Viewer</h2>
+          <p>A simple component for displaying one IIIF image.</p>
+        </div>
         <Viewer
           height="500px"
           width="100%"

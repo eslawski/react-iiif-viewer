@@ -1,6 +1,6 @@
 # React IIIF Viewer
 
-A React component library for displaying high resolution images with deep zooming capabilities on mobile and desktop.
+A React component library built on [OpenSeadragon](https://openseadragon.github.io/) for displaying high resolution images with deep zooming capabilities on mobile and desktop.
 
 Demo
 
@@ -12,21 +12,15 @@ The "International Image Interoperability Framework", or [IIIF](https://iiif.io/
 
 IIIF images are served from a special server that breaks down the original image into small tiles. The browser can then make requests for these tiles as the user zooms/pans around the image. As the user zooms in deeper, high resolution tiles are requested to maintain quality and performance.
 
-### Getting Started
-
-#### Installation
+### Installation
 
 Install via `npm`:
 
 ```
 $ npm install react-iiif-viewer --save
-
 ```
 
-#### Components
-This React library, built on [OpenSeadragon](https://openseadragon.github.io/), provides viewers that can display one or many IIIF images at once.
-
-##### Viewer
+### Components
 A no frills viewer that displays one image at a time.
 
 ```

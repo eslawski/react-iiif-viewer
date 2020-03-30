@@ -89,6 +89,7 @@ $ npm test
 
 ### Future Improvements
 
+1. Implement custom full screen experience for iPhones since they don't yet support the [Full Screen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)
 1. CI pipeline with automatic publishing to Github pages
 1. Error states when image fails to load
 1. Error states when unable to fetch certain thumbnails

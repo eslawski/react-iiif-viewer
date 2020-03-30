@@ -54,7 +54,6 @@ class MultiViewer extends React.Component {
   handleFullScreenChange() {
     if(document.fullscreenElement
       || document.webkitCurrentFullScreenElement
-      ||document.fullscreenElement
       || document.webkitFullscreenElement
       || document.mozFullScreenElement) {
       this.setState({isInFullScreen: true})
@@ -175,11 +174,13 @@ class MultiViewer extends React.Component {
           zoomOutHandler={() => this.zoomOut()}
         />
 
-        <FullScreenControls
-          isInFullScreen={this.state.isInFullScreen}
-          enterFullScreenHandler={() => this.enterFullScreen()}
-          exitFullScreenHandler={() => this.exitFullScreen()}
-        />
+        {FullScreenAPI.isEnabled() &&
+            <FullScreenControls
+              isInFullScreen={this.state.isInFullScreen}
+              enterFullScreenHandler={() => this.enterFullScreen()}
+              exitFullScreenHandler={() => this.exitFullScreen()}
+          />
+        }
 
         {this.props.showToolbar &&
           <Toolbar

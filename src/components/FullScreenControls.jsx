@@ -30,7 +30,7 @@ const FullScreenControls = ({isInFullScreen, enterFullScreenHandler, exitFullScr
   }
 
   return (
-    <Containter>{renderButton()}</Containter>
+    <Containter data-testid="fullscreen-controls">{renderButton()}</Containter>
   )
 }
 

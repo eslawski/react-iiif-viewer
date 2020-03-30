@@ -30,6 +30,7 @@ describe('<MultiViewer />', () => {
     mockOpen.mockClear();
     mockZoomBy.mockClear();
     mockApplyConstraints.mockClear();
+    document.fullscreenEnabled = true;
   });
 
   it('renders with the first image', () => {
@@ -220,5 +221,12 @@ describe('<MultiViewer />', () => {
     // The proper image is set
     const viewerElement = getByTestId('react-iiif-viewer')
     expect(viewerElement).toHaveAttribute("data-cur-iiif-url", "url2")
+  })
+
+  it('hides the full screen controls when the full screen API is not available', async () => {
+    document.fullscreenEnabled = false
+    const { queryByTestId } = renderViewer()
+
+    expect(queryByTestId("fullscreen-controls")).toBeNull()
   })
 })

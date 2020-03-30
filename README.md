@@ -1,11 +1,11 @@
 # React IIIF Viewer
 
-A React component library built on [OpenSeadragon](https://openseadragon.github.io/) for displaying high resolution images with deep zooming capabilities on mobile and desktop. Check out the interactive demo [here](https://eslawski.github.io/react-iiif-viewer/)!
+A React component library built on [OpenSeadragon](https://openseadragon.github.io/) for displaying high resolution images with deep zooming capabilities on mobile and desktop. Check out the interactive [Demo](https://eslawski.github.io/react-iiif-viewer/)!
 
 
 
 
-![example](flower_example.gif)
+![example](mask_example.gif)
 
 ### What is IIIF?
 
@@ -32,7 +32,7 @@ A basic viewer that displays one image at a time.
 ```
 import { Viewer } from "react-iiif-viewer"
 
-<Viewer iiifUrl="https://data.getty.edu/museum/api/iiif/671108/info.json" />
+<Viewer iiifUrl="https://data.getty.edu/museum/api/iiif/635494/info.json" />
 ```
 
 
@@ -50,6 +50,7 @@ A viewer that displays a collection of IIIF images via an expandable/collapsable
 import { MultiViewer } from "react-iiif-viewer"
 
 <MultiViewer iiifUrls={[
+    "https://data.getty.edu/museum/api/iiif/635494/info.json",
     "https://data.getty.edu/museum/api/iiif/671108/info.json",
     "https://data.getty.edu/museum/api/iiif/194801/info.json",
     "https://data.getty.edu/museum/api/iiif/268179/info.json"

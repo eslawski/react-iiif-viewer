@@ -14,7 +14,7 @@ export default class App extends Component {
 
         <MultiViewer
           height="600px"
-          width="80%"
+          width="100%"
           iiifUrls={[
             "https://data.getty.edu/museum/api/iiif/635494/info.json",
             "https://data.getty.edu/museum/api/iiif/671108/info.json",

@@ -5,6 +5,6 @@ export default {
   thumbnailHeight: "125px",
   thumbnailHeightFullscreen: "200px",
   thumbnailDrawerBackgroundColor: "rgba(0, 0, 0, 0.9);",
-  thumbnailSelectedColor: "#8b0000"
+  thumbnailSelectedColor: "#005DAC"
 
 }

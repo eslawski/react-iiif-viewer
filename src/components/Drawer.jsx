@@ -49,7 +49,7 @@ const ThumbnailWrapper = styled.div`
     height: 100%;
     width: 100%;
     position: relative;
-    opacity: .6;
+    opacity: .7;
 
     &:hover {
       opacity: 1;

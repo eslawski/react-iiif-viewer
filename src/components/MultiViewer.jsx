@@ -40,11 +40,13 @@ class MultiViewer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentIndex: 0,
+      currentIndex: props.currentIndex || 0,
       drawerOpen: false,
       isInFullScreen: false,
       imageInfos: []
     }
+
+    this.currentIndexChanged = props.currentIndexChanged
 
     this.reactIIIFViewerRef = React.createRef()
     this.openSeadragonRef = React.createRef()
@@ -86,6 +88,13 @@ class MultiViewer extends React.Component {
     document.removeEventListener("mozfullscreenchange", this.handleFullScreenChange);
     document.removeEventListener("msfullscreenchange", this.handleFullScreenChange);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentIndex !== prevState.currentIndex && this.currentIndexChanged) {
+      this.currentIndexChanged(this.state.currentIndex)
+    }
+  }
+
 
   enterFullScreen() {
     FullScreenAPI.enter(this.reactIIIFViewerRef.current)
